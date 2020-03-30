@@ -1,0 +1,33 @@
+
+
+/* @media only screen and (min-width: 400px) { */
+  
+  #container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    grid-template-rows: repeat(3, 150px);
+    
+  }
+  #header1{
+    border:1px solid black;
+    grid-row: 1/1;
+    grid-column: 2/3;
+    background-color: aqua;
+  }
+  #header2{
+    border:1px solid black;
+    grid-row: 2/3;
+    grid-column: 1/2;
+    background-color: aqua
+  }
+  #header3{
+    border:1px solid black;
+    grid-row: 2/3;
+    grid-column: 3/4;
+    background-color: aqua
+  }
+  body{
+  background-image: url("/Users/christopher/Library/Mobile Documents/com~apple~CloudDocs/Documents/vschool/vmodule1/meadePlumbing/plumbpic.jpeg");}
+/* } */
+                                      

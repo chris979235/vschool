@@ -1,0 +1,18 @@
+{
+	"data": {
+		"appetizers": ["mozzerella sticks", "nachos", "jelapono poppers"],
+		"coldSandwhiches": ["hamSandwhich", "turkeySandwhich", "roastBeef"],
+		"hotSanwhiches": {
+			"meatBall": {
+				"cheese": "swiss",
+				"bread": "garlick"
+			}
+		},
+		"chicken": {
+			"cheese": "provolone",
+			"bread": "itilian herb and cheese"
+		}
+	},
+	"desserts": ["chocklate cake", "apple pie", "cheescake"],
+	"drinks": ["coke", "orange juice", "apple juice"]
+}

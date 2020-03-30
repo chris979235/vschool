@@ -1,0 +1,67 @@
+#a{
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#b{
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+}
+#b1{
+  display: inline;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+#c{
+  
+  display: inline;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+#d{
+  display: flex;
+  justify-content: left;
+}
+
+#tabed{
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  bottom: -475px;
+}
+
+@media only screen and (max-width: 600px) {
+  #tabed
+   {
+     display: flex;
+     align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+  }
+}
+
+#guny{
+float: inline-start; 
+ width:400px;
+ margin-left: 38%;
+}
+#short{
+  position: relative;
+  left: 600px;
+  width: 200px;
+}
+
+#doc{
+  position: relative;
+  left: 50%;
+}
+
+#pr{
+  position: relative;
+  left: 50%;
+
+}

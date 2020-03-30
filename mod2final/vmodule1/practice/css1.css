@@ -1,0 +1,72 @@
+.box1{
+border: 2px solid blue;
+padding: 10px 5px 10px 5px;
+margin-bottom: 10px;
+}
+
+.box2{
+border: 1px solid black;
+padding: 10px 5px 10px 5px;
+margin-top: 10px;
+}
+
+#box3{
+  border: 2px solid green;
+}
+#box3 > h1{
+  background-color: aquamarine;
+}
+
+/*media quary== changes when you reach a certina pixel or pre designated set-up*/
+/*larger phones*/
+@media only screen and (min-width: 600px){
+#box > h1{
+  background-color: brown;
+}
+#box3{
+  background-color: red;
+}
+
+}
+/*tablet*/
+@media only screen and (min-width: 650px){
+  #box > h1{
+    background-color: cornflowerblue;
+  }
+  #box3{
+    border: 5px solid purple;
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 700px){
+  body {
+      background-color: yellow;
+  }
+}
+
+#flexy {
+  border: 15px solid blue;
+  display: flex;
+  flex-direction: column;
+}
+
+#flexy {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+#grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+header {
+  font-size: 22px;
+  background-color: dodgerblue;
+  text-align: center;
+  grid-column: 1 / 4;
+}

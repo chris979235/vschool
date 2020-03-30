@@ -1,0 +1,89 @@
+.move {
+float: right;  
+margin-left: 5px;
+cursor: pointer;
+}
+.mover{
+  float: right;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.moved{
+  float: left;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.moves{
+  float:left;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+
+
+.GG{
+  position: relative;
+  left: 500px; 
+  top:250px;
+  font-size: 100px;
+}
+.oo{
+  position: relative;
+  left: 500px;
+  top: 250px;
+  font-size: 100px;
+}
+.oo2{
+  position: relative;
+  left: 500px;
+  top: 250px;
+  font-size: 100px;
+}
+.gg{
+  position: relative;
+  left: 500px;
+  font-size: 100px;
+  top:250px;
+}
+.ll{
+  position: relative;
+  left: 500px;
+  top:250px;
+  font-size: 100px;
+}
+.ee{
+  position: relative;
+  left: 500px;
+  top:250px;
+  font-size: 100px;
+  
+}
+
+input.classed{
+  position: relative;
+  right: 120px;
+  top: 315px;
+  width: 400px;
+  height: 30px;
+}
+
+button.butt1{
+  position: relative;
+  left:220px;
+  top:375px;
+width: 130px;
+height:30px;
+}
+
+button.butt2{
+  position: relative;
+  left:220px;
+  top:375px;
+width:130px;
+height:30px;
+}
+
+button {
+  cursor: pointer
+}

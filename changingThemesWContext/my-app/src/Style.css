@@ -1,0 +1,9 @@
+.false {
+  background-color: #333333;
+  color: whitesmoke;
+}
+
+.true {
+  background-color: whitesmoke;
+  color: #333333;
+}

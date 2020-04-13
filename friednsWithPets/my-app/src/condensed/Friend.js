@@ -1,7 +1,6 @@
 import React from "react";
 import Pet from "./Pet";
 function Friend(props) {
-  console.log(props);
   const mappedpets = props.pets.map(function(newarr) {
     return <Pet breed={newarr.breed} petname={newarr.name} />;
   });

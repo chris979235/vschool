@@ -6,7 +6,7 @@ function App() {
   const vacation = Vacation.map(function(newarr) {
     return (
       <CondensedVaca
-        placetogo={newarr.place}
+        place={newarr.place}
         cost={newarr.price}
         time={newarr.timeToGo}
       />

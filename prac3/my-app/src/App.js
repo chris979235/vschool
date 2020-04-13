@@ -1,19 +1,19 @@
-import React from "react";
-import PunchLine from "./container/PunchLine";
-import JokesData from "./container/JokesData";
-
-function App() {
-  const jokeComponents = JokesData.map(function(punchLine) {
-    return (
-      <PunchLine
-        key={punchLine.id}
-        Q={punchLine.question}
-        punch={punchLine.joke}
+import React from 'react'
+import Info from "./Info"
+import Friends from "./Friends"
+export default function App() {
+  const mappedFriend=Info.map(function (friend){
+    return(
+      <Friends
+      age={friend.age}
+      name={friend.name}
+      pets={friend.pets}
       />
-    );
-  });
-
-  return <div>{jokeComponents}</div>;
+    )
+  })
+  return (
+    <div>
+     {mappedFriend}
+    </div>
+  )
 }
-
-export default App;

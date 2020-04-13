@@ -6,7 +6,10 @@ import "./style.css";
 function FriendListApp() {
   const friends = OverAllObject.map(function(newarr) {
     return (
-      <Friend friendname={newarr.name} age={newarr.age} pets={newarr.pets} />
+      <Friend 
+      friendname={newarr.name} 
+      age={newarr.age} 
+      pets={newarr.pets} />
     );
   });
 

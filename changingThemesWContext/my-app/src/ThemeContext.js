@@ -20,9 +20,10 @@ class ThemeContextProvider extends Component {
     render(){
       return(
         <Provider 
-        value={{...this.state,
-        themeDark:this.state.themeDark, 
-        switchTheme:this.switchTheme}}>
+        value={{
+          ...this.state, 
+          switchTheme:this.switchTheme
+        }}>
         {this.props.children}
         </Provider>
 

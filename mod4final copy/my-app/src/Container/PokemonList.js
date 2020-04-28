@@ -11,7 +11,7 @@ export default function PokemonList() {
     return <ReducedPokemon key={id} id={id} name={singlePoke.name} pokeURL={singlePoke.url}/>
   })
   return (
-    <div>
+    <div className="middle">
       {mappedPokemon}
     </div>
   )

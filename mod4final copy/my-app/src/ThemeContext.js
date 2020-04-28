@@ -1,9 +1,6 @@
 import React, {createContext, useState, useEffect} from "react"
 import axios from 'axios'
-import ReducedPokemon from "./Container/ReducedPokemon"
 const ThemeContext = createContext()
-
-
 
 function ThemeContextProvider(props){
   const [pokemon, setPokemon] = useState([])
@@ -21,7 +18,6 @@ function ThemeContextProvider(props){
     <ThemeContext.Provider value={{pokemon}}>
             { props.children }
         </ThemeContext.Provider>
-
 )
 }
 

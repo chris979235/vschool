@@ -2,8 +2,6 @@ import React from 'react'
 import {Switch, Route, Link} from "react-router-dom"
 import Home from "./Container/Home"
 import About from "./Container/About"
-import {ThemeContext} from "./ThemeContext"
-import ReducedPokemon from './Container/ReducedPokemon'
 import PokemonList from './Container/PokemonList'
 export default function App() {
   return (

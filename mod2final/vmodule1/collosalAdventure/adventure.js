@@ -1,4 +1,3 @@
-///command d hold d change all
 let readlineSync = require('readline-sync');
 
 const randomNumber = function(max, min) {
@@ -7,13 +6,11 @@ const randomNumber = function(max, min) {
 
 const player = {
   name: readlineSync.question("welcome to hell road, you will certantly die \nwhat is your name \n"),
-  hp: 75,
+  hp: 200,
   inventory:[],
   attackMax:randomNumber(10,5),
   attackMin:randomNumber(5,1),
 }
-
-
 const randomItemDrop=["pickle", "gum","nothing","bag of tricks"]
 const createEnemy=function (enemyName){
   return {
@@ -26,7 +23,6 @@ const createEnemy=function (enemyName){
   }
 }
 let enemies=[createEnemy("austin powers"),createEnemy("dr evil"),createEnemy("mini me")]
-
 while(enemies.length>0 && player.hp>0){
   const walkOrPrint=readlineSync.keyIn('press w to walk, random key for inventory\n', {limit: ['w', "print"]});
   if (walkOrPrint==="w"){

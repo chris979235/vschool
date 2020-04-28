@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, PureComponent} from "react"
+import React, {useState, useEffect} from "react"
 import {Link,} from "react-router-dom"
 import axios from 'axios'
 
@@ -23,21 +23,14 @@ export default function ReducedPokemon(props) {
     
   
   return (
-    <div>
+    <div >
         <Link to={{pathname:`/About/${props.id}`, state:poketMon.pokemon}} pathname="pokemon"
         >
         {<img src={poketMon.imgURL} alt={poketMon.pokemon.name} 
          className="image"></img>}
-        whose that
+        <p>whose that pokeman</p>
         </Link>
        
     </div>
   )
 }
-// { <Link to={{
-//   pathname: '/tylermcginnis',
-//   state: {
-//     fromNotifications: true
-//   }
-// }}>Tyler McGinnis</Link> }
-

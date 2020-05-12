@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import Pet from "./Pet"
 import FriendList from "./FriendsList"
 export default function Friend(props) {

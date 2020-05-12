@@ -18,7 +18,6 @@ export default function ReducedPokemon(props) {
       })
       .catch(error => console.log(error))
     },[])  
-  console.log("hello")
   
     
   

@@ -33,7 +33,6 @@ function App() {
      const ending=prevUglyData.slice(index+2, prevUglyData.length)
      console.log(starting,ending,123)
      return [...starting,edits,...ending]
-      console.log(22222,edits)
     })
     }
 

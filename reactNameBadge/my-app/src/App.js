@@ -62,28 +62,28 @@ export default class App extends Component {
         <form onSubmit={this.handleSubmit} className="formcontainer">
         <div className="container">
         <input value={this.state.firstName} 
-        onChange={this.handleChange} 
         name="firstName" placeholder="firstsName"
+        onChange={this.handleChange} 
         className="one">
         </input>
         <input value={this.state.lastName} 
-        name="lastName" onChange={this.handleChange} 
         placeholder="lastName"
+        name="lastName" onChange={this.handleChange} 
         className="two">
         </input>
         <input value={this.state.email} 
-        name="email" onChange={this.handleChange} 
         placeholder="email"
+        name="email" onChange={this.handleChange} 
         className="three">
         </input>
         <input value={this.state.placeOfBirth} 
-        name="placeOfBirth" onChange={this.handleChange} 
         placeholder="placeOfBirth"
+        name="placeOfBirth" onChange={this.handleChange} 
         className="four">
         </input>
         <input value={this.state.phone}
-         name="phone" type="number" onChange={this.handleChange} 
          placeholder="phoneNumber"
+         name="phone" type="number" onChange={this.handleChange} 
          className="five">
          </input>
         <input value={this.state.favoriteFood} 

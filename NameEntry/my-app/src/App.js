@@ -9,7 +9,6 @@ export default class App extends Component {
       namesArray:[]
     }
   }
-  //square brackets and parethesis is same putting it to the index of [i] kinda like looping
   handleChange = (event) => {
     event.preventDefault()
     console.log(event.target)

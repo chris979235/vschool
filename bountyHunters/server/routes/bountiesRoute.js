@@ -29,9 +29,9 @@ bountiesRoute.delete('/:bountyId'), (req, res)=>{
   ForceUser.filter(forcey => forcey._id===delBountyId
   )}
 ///////
-// bounties.put('/:bountyID'),(req, res)=>{
+bountiesRoute.put('/:bountyID'),(req, res)=>{
   
-// }
+}
 
 bountiesRoute.post("/", (req, res) =>{
   const newbounty=req.body

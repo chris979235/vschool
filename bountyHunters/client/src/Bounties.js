@@ -16,11 +16,28 @@ export default function Bountyhunter() {
     .catch(error => console.log(error))
   },[])
 
-  
+  function deleted(_id){
+    setBounty(prevBounty => prevBounty.filter(bounty => bounty._id !== _id))
+   }
 
-  const mappedBounties = bounties.map(newbounty => {
-   return <MappedBounty firstName={newbounty.firstName} lastName={newbounty.lastName}
-   living={newbounty.living} bounty={newbounty.bounty} type={newbounty.type}
+  function edit(edits){
+    setBounty(prevBounty => {
+     const index= prevBounty.indexOf(bounty => bounty._id === edits._id)
+     const starting=prevBounty.slice(0,index)
+     const ending=prevBounty.slice(index+2, prevBounty.length)
+     
+     console.log(21,edits)
+     console.log(starting,ending,123)
+     return [...starting,edits,...ending]
+    })
+    }
+
+    
+
+  const mappedBounties = bounties.map((newbounty, _id) => {
+   return <MappedBounty key={_id} firstName={newbounty.firstName} lastName={newbounty.lastName}
+   living={newbounty.living} bounty={newbounty.bounty} type={newbounty.type} buttonEdit={edit} 
+   buttonDelete={deleted} 
    />
   })
   return (

@@ -1,79 +1,53 @@
-import React, {useState} from 'react'
-const { v4: uuid } = require('uuid');
-export default function MappedBounty(props) {
-  const [bounty, setBounty]=useState({firstName:'',lastName:'',bounty:'',type:'',status:'', _id:props._id})
-  const [toggle, setToggle]=useState(true)
+import React, { useContext } from 'react'
+import { MyContext } from './AppContext.js'
 
-  function handleToggle(){
-    setToggle( prevToggle => !prevToggle )
-  }
+export default function (props) {
+    const { form, setForm, setPeople } = useContext(MyContext)
+    function handleChange (e) {
+        const { name, value } = e.target
+        setForm( prevForm => {
+            return {
+                ...prevForm,
+                [ name ]: value
+            }
+        })
+    }
 
-  function handleChange(event) {
-    const {name, value} = event.target
-    setBounty(prevBounty => {
-        return {
-            ...prevBounty,
-            [name]: value
-        }
-    })
+    function handleSubmit (e) {
+        //Axios call
+        // In the .then()
+        e.preventDefault()
+        setPeople( prevPeople => {
+            return [ form, ...prevPeople]
+        })
+        setForm({ firstName: "", lastName: ""})
+    }
+
+    function handleEditChange (e) {
+        const { name, value } = e.target
+        props.setEditForm( prevForm => {
+            return {
+                ...prevForm,
+                [ name ]: value
+            }
+        })
+    }
+
+    function handleEditSubmit (e) {
+        e.preventDefault()
+        setPeople( prevPeople => {
+            const updatedPeople = prevPeople.map( person => person.firstName !== props.firstName && person.lastName !== props.lastName ? { firstName: person.firstName, lastName: person.lastName } : { firstName: props.editForm.firstName, lastName: props.editForm.lastName } )
+            return updatedPeople
+        })
+        props.toggleEdit()
+    }
+
+    return (
+        <form onSubmit={props.firstName ? handleEditSubmit : handleSubmit}>
+            <input onChange={props.firstName ? handleEditChange : handleChange} name="firstName" value={props.firstName ? props.editForm.firstName : form.firstName} type="text" placeholder="first name" />
+            <input onChange={props.firstName ? handleEditChange : handleChange} name="lastName" value={props.firstName ? props.editForm.lastName : form.lastName} type="text"  placeholder="last name"/>
+            <button>Submit</button>
+        </form>
+    )
 }
 
-function handleSubmit(event) {
-  event.preventDefault()
-  props.buttonEdit(bounty)
-  // setBounty({firstName:'',lastName:'',bounty:'',type:'',status:'', _id:props._id})
- setToggle(prevToggle => !prevToggle)
-}
-
-  return (
-    <div>
-      {
-        toggle?
-      <div>
-      <h2>Wanted: {props.firstName}-{props.lastName}</h2>
-      <h3>Status: {props.living}</h3>
-      <h4>Bounty: {props.bounty}</h4>
-      <h4>Alighnment: {props.type}</h4>
-      <button onClick={handleToggle}>edit</button>  
-      <button onClick={() => props.buttonDelete(props._id)}>delete</button> 
-      </div>:
-      <form onSubmit={handleSubmit}>
-      <input 
-        placeholder="firstname"
-        name="firstName" 
-        value={bounty.firstName}
-        onChange={handleChange}
-      />
-        
-      <input 
-          placeholder="lastname"
-          name="lastName" 
-          value={bounty.lastName}
-          onChange={handleChange}
-      />
-      <input 
-        placeholder="type"
-        name="type" 
-        value={bounty.type}
-        onChange={handleChange}
-        
-    />
-      <input 
-        placeholder="bounty"
-        name="bounty" 
-        value={bounty.bounty}
-        onChange={handleChange}
-    />
-     <input 
-        placeholder="dead or alive"
-        name="status" 
-        value={bounty.status}
-        onChange={handleChange}
-    />
-    <br />
-    <button>update</button>
-   </form>
-}
-    </div>
-  )
-}

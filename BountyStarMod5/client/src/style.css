@@ -1,0 +1,10 @@
+.container{
+  border:1px solid black;
+  text-align: center;
+  width: 30%;
+  height:100px;
+  margin-left: 35%;
+}
+.container2{
+  margin-top: 7%;
+}

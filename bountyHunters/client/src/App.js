@@ -9,7 +9,7 @@ export default function () {
     const mappedPeople = people.map( person => <Bounties {...person} /> )
     return (
         <>
-            <h3>Hello Friends</h3>
+            <h3>Bounty</h3>
             <MappedBounty />
             { mappedPeople }
         </>

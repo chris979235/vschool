@@ -5,9 +5,6 @@ const { v4: uuid } = require('uuid');
 const ForceUser=[
   {firstName:"Luke", lastName:'Skywalker', living:'alive', bounty:2500000, type:'jedi knight', _id:uuid()},
   {firstName:"Darth", lastName:'Vader', living:'alive', bounty:999999999, type:'sith lord', _id:uuid()},
-  {firstName:"yo", lastName:'da', living:'alive', bounty:1000000000000, type:'jedi master', _id:uuid()},
-  {firstName:"emperror", lastName:'palpatine', living:'dead', bounty:"claimed", type:'sith lord', _id:uuid()},
-  {firstName:"obi-wan", lastName:'kenobi', living:'dead', bounty:'claimed', type:'jedi master', _id:uuid()},
   {firstName:"mace", lastName:'windu', living:'alive', bounty:23515312, type:'jedi master', _id:uuid()},
   {firstName:"count", lastName:'dooku', living:'alive', bounty:345435345, type:'sith lord', _id:uuid()}
 ]

@@ -12,38 +12,23 @@ userAxios.interceptors.request.use(config =>{
 })
 
 export default function UserProvider(props) {
-const initState = {
-  user: JSON.parse(localStorage.getItem('user')) || {},
-  token: localStorage.getItem("token") || "",
-  comments: [],
-  errMsg:""
-}
 
-const [userState, setUserState]=useState(initState)
-console.log(1212,userState)
+  const initState = {
+    user: JSON.parse(localStorage.getItem('user')) || {},
+    token: localStorage.getItem("token") || "",
+    comments: [],
+    errMsg:"",
+  }
 
-function signup(credentials){
-axios.post("/auth/signup", credentials)
-.then(res => {
-  const {user, token}=res.data
-  localStorage.setItem("token", token)
-  localStorage.setItem("user", JSON.stringify(user))
-  setUserState(prevUserState =>({
-    ...prevUserState,
-    user,
-    token
-  }))
-})
-.catch(err => handleAuthError(err.response.data.errMsg))
-}
+  const [userState, setUserState]=useState(initState)
+  console.dir(1212,userState.value)
 
-function login(credentials){
-  axios.post("/auth/login", credentials)
+  function signup(credentials){
+  axios.post("/auth/signup", credentials)
   .then(res => {
     const {user, token}=res.data
-    localStorage.setItem("token",token)
+    localStorage.setItem("token", token)
     localStorage.setItem("user", JSON.stringify(user))
-    getUserComments()
     setUserState(prevUserState =>({
       ...prevUserState,
       user,
@@ -51,53 +36,90 @@ function login(credentials){
     }))
   })
   .catch(err => handleAuthError(err.response.data.errMsg))
-}
+  }
 
-function logout(){
-  localStorage.removeItem('token')
-  localStorage.removeItem('user')
-  setUserState({
-    user:{},
-    token:"",
-    comments:[]
-  })
-}
+  function login(credentials){
+    axios.post("/auth/login", credentials)
+    .then(res => {
+      const {user, token}=res.data
+      localStorage.setItem("token",token)
+      localStorage.setItem("user", JSON.stringify(user))
+      getUserComments()
+      setUserState(prevUserState =>({
+        ...prevUserState,
+        user,
+        token,
+      }))
+    })
+    .catch(err => handleAuthError(err.response.data.errMsg))
+  }
 
-function handleAuthError(errMsg){
-setUserState(prevState =>({
-  ...prevState, 
-  errMsg
-}))
-}
+ 
 
-function getUserComments(){
-  userAxios.get('api/comments/user')
+  function handleAuthError(errMsg){
+  setUserState(prevState =>({
+    ...prevState, 
+    errMsg
+  }))
+  }
+
+  function getUserComments(){
+    userAxios.get('api/comments/user')
+    .then(res => {
+      setUserState(prevState =>({
+        ...prevState,
+        comments:res.data
+      }))
+    })
+    .catch(err=> console.log(err.response.data.errMsg))
+  }
+
+  function addComment(newComment){
+  userAxios.post('/api/comments', newComment)
   .then(res => {
-     setUserState(prevState =>({
-       ...prevState,
-       comments:res.data
-     }))
+    setUserState( prevState=>({
+      ...prevState,
+      comments:[...prevState.comments, res.data]
+    }))
   })
   .catch(err=> console.log(err.response.data.errMsg))
+  }
+
+  //put request for likes
+
+  function resetAuthError(){
+    setUserState(prevState => ({
+      ...prevState, 
+      errMsg:""
+    }))
+  }
+
+  function deleteComment(commentId) {
+    console.log(commentId,22222)
+    userAxios
+        .delete(`/api/comments/${commentId}`)
+        .then((res) => {
+            setUserState((prev) =>
+              ({
+                ...prev,
+                comments: prev.comments.filter((comments) => comments._id !== commentId)
+                })
+            );
+        })
+        .catch((error) => console.log(error));
+  }
+
+  function logOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUserState({
+        user: {},
+        token: "",
+        comments: [],
+    });
 }
 
-function addComment(newTodo){
-userAxios.post('/api/comments', newTodo)
-.then(res => {
-  setUserState( prevState=>({
-    ...prevState,
-    comments:[...prevState.comments, res.data]
-  }))
-})
-.catch(err=> console.log(err.response.data.errMsg))
-}
 
-function resetAuthError(){
-  setUserState(prevState => ({
-    ...prevState, 
-    errMsg:""
-  }))
-}
 
   return (
       <UserContext.Provider
@@ -105,9 +127,11 @@ function resetAuthError(){
         ...userState,
         signup,
         login,
-        logout,
         addComment,
         resetAuthError,
+        deleteComment,
+        getUserComments,
+        logOut,
       }}>
       {props.children}
       </UserContext.Provider>

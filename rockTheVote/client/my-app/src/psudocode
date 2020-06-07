@@ -1,0 +1,55 @@
+// server.js
+app.use("/api/issue", require("../routes/issueRouter.js")
+// 1. set up Issue model
+// 2. Set up issueRouter, for (get post put delete, (upvote, downvote))
+// 3. Build front end functionality, get all issues, addIssue
+// 4. -- come back --  Create/update comment model
+// 5. Create/update comment routes, (get by array of ids, post)
+// 6. Load comments on front end for specific issues.
+// models/issue.js  
+{
+  title: "",
+  description: "",
+  _id: "",
+  upvote: {
+    type: Number,
+    default: 0
+  },
+  downvote: 0,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
+  comments: {
+    type: [Schema.Types.ObjectId],
+    ref: "Comment",
+    default: []
+  }
+}
+// routes/issueRouter.js
+issueRouter.post("/", (req, res, next) => {
+  const newIssue = new Issue(req.body)
+  newIssue.user = req.user._id
+  newIssue.save((err, savedIssue) => {
+  })
+})
+// routes/issueRouter.js
+issueRouter.put("/upvote/:issueID", (req, res, next) => {
+  Issue.findOneAndUpdate(
+      {_id: req.params.issueID},
+      {$inc: {upvote: 1}},
+      {new: true},
+      (err, updatedIssue) => {
+      }
+    )
+}) 
+issueRouter.put("/downvote/:issueID", (req, res, next) => {
+  Issue.findOneAndUpdate(
+      {_id: req.params.issueID},
+      {$inc: {downvote: -1}},
+      {new: true},
+      (err, updatedIssue) => {
+      }
+    )
+}) 

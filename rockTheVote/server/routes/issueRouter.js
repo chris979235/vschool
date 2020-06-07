@@ -13,6 +13,35 @@ issueRouter.get("/get", (req, res, next) => {
   })
 })
 
+issueRouter.put("/upvote/:issueID", (req, res, next) => {
+  Issue.findOneAndUpdate(
+      {_id: req.params.issueID},
+      {$inc: {upvote: 1}},
+      {new: true},
+      (err, updatedIssue) => {
+        if(err){
+          res.status(500)
+          return next(err)
+        }
+        return res.status(201).send(updatedIssue)
+      }
+    )
+}) 
+//////
+issueRouter.put("/downvote/:issueID", (req, res, next) => {
+  Issue.findOneAndUpdate(
+      {_id: req.params.issueID},
+      {$inc: {downvote: -1}},
+      {new: true},
+      (err, updatedIssue) => {
+        if(err){
+          res.status(500)
+          return next(err)
+        }
+        return res.status(201).send(updatedIssue)
+      })
+      }
+    )
 
 // Add new issue
 issueRouter.post("/", (req, res, next) => {
@@ -26,6 +55,19 @@ issueRouter.post("/", (req, res, next) => {
     return res.status(201).send(savedIssue)
   })
 })
+/////////////////////
+// issueRouter.post("/", (req, res, next) => {
+//   const newIssue = new Issue(req.body)
+//   newIssue.user = req.user._id
+//   newIssue.save((err, savedIssue) => {
+//   })
+//   if(err){
+//     res.status(500)
+//     return next(err)
+//   }
+//   return res.status(201).send(savedIssue)
+// })
+
 
 // Delete issue
 issueRouter.delete("/:commentID", (req, res, next) => {

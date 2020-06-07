@@ -6,11 +6,19 @@ const issueSchema = new Schema({
     type: String,
     required: true
   },
+  downvote:{
+    type:Number,
+    default:0
+  },
+  upvote:{
+    type:Number,
+    default:0
+  },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "comment",
     required: true
   }
 })
 
-module.exports = mongoose.model("issue", issueSchema)
+module.exports = mongoose.model("Issue", issueSchema)

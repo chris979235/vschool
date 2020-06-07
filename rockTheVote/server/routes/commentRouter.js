@@ -37,6 +37,8 @@ commentRouter.post("/", (req, res, next) => {
   })
 })
 
+
+
 // Delete Comment
 commentRouter.delete("/:commentId", (req, res, next) => {
   Comment.findOneAndDelete(
@@ -46,9 +48,12 @@ commentRouter.delete("/:commentId", (req, res, next) => {
         res.status(500)
         return next(err)
       }
-      return res.status(200).send(`Successfully delete Comment: ${deletedComment.title}`)
+      return res.status(200).send(`Successfully delete Comment:`)
+      // ${deletedComment.comments}`)
     }
   )
 })
+
+
 
 module.exports = commentRouter

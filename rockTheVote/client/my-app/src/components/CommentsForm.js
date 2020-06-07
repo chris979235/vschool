@@ -1,31 +1,28 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from '../context/UserProvider'
 
-const initInputs = {
- comments:''
-}
+
 
 export default function CommentsForm(props){
-  const [inputs, setInputs] = useState(initInputs)
-  const {addComment}=useContext(UserContext)
+  const [input, setInput] = useState({comments:''})
+
+  const {addComment, logOut}=useContext(UserContext)
+
   console.log('addcomment',addComment)
 
   function handleChange(e){
     const {name, value} = e.target
-    setInputs(prevInputs => ({
-      ...prevInputs,
+    setInput(prevInput => ({
+      ...prevInput,
       [name]: value
     }))
   }
 
   function handleSubmit(e){
     e.preventDefault()
-    addComment(inputs)
-    setInputs(initInputs)
+    addComment(input)
+    setInput({comments:''})
   }
-
-  const {comments} = inputs
-  console.log(22222222,comments)
 
 
   return (
@@ -33,10 +30,11 @@ export default function CommentsForm(props){
       <input 
         type="text" 
         name="comments" 
-        value={comments} 
+        value={input.comments} 
         onChange={handleChange} 
         placeholder="comment"/>
       <button>Add comment</button>
+      <button onClick={logOut}>log out</button>
     </form>
   )
 }

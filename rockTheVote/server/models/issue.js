@@ -2,9 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const issueSchema = new Schema({
-  issues: {
+  issue: {//issue is the title
     type: String,
     required: true
+  },
+  description:{
+    type:String,
+    required:true
   },
   downvote:{
     type:Number,
@@ -14,9 +18,14 @@ const issueSchema = new Schema({
     type:Number,
     default:0
   },
+  comments: {
+    type: [Schema.Types.ObjectId],
+    ref: "Comment",
+    default: []
+  },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "comment",
+    ref: "User",
     required: true
   }
 })

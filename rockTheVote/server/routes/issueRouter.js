@@ -1,10 +1,10 @@
 const express = require("express")
 const issueRouter = express.Router()
-const issue = require('../models/issue.js')
+const Issue = require('../models/issue.js')
 
 // Get All issues
-issueRouter.get("/get", (req, res, next) => {
-  issue.find((err, issues) => {
+issueRouter.get("/", (req, res, next) => {
+  Issue.find((err, issues) => {
     if(err){
       res.status(500)
       return next(err)
@@ -43,7 +43,7 @@ issueRouter.put("/downvote/:issueID", (req, res, next) => {
       }
     )
 
-// Add new issue
+// Add new Issue
 issueRouter.post("/", (req, res, next) => {
   req.body.user = req.user._id
   const newIssue = new Issue(req.body)
@@ -56,31 +56,20 @@ issueRouter.post("/", (req, res, next) => {
   })
 })
 /////////////////////
-// issueRouter.post("/", (req, res, next) => {
-//   const newIssue = new Issue(req.body)
-//   newIssue.user = req.user._id
-//   newIssue.save((err, savedIssue) => {
-//   })
-//   if(err){
-//     res.status(500)
-//     return next(err)
-//   }
-//   return res.status(201).send(savedIssue)
-// })
 
 
-// Delete issue
-issueRouter.delete("/:commentID", (req, res, next) => {
-  issue.findOneAndDelete(
-    { _id: req.params.commentID, user: req.user._id },
-    (err, deletedIssue) => {
-      if(err){
-        res.status(500)
-        return next(err)
+
+issueRouter.get("/issue/:issueId", (req, res, next) => {
+  Issue.find({ issue: req.params.issueId }, (err, posts) => {
+      if (err) {
+          res.status(500);
+          return next(err);
       }
-      return res.status(200).send(`Successfully delete issue: ${deletedIssue.title}`)
-    }
-  )
-})
+      res.status(200).send(posts);
+  });
+});
+
+
+
 
 module.exports = issueRouter

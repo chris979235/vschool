@@ -9,7 +9,6 @@ export default function TodoList(props){
     getUserComments()
   },[])
 
-  console.log('comments',comments)
   return (
     <div className="todo-list">
       {comments.map(comments => <Comments {...comments} key={comments._id}

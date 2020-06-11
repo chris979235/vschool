@@ -1,11 +1,10 @@
 import React from 'react'
-import CommentsList from './CommentsList.js'
-import Comments from './Comments.js'
+import Issues from './Issues'
 
 export default function Public(){
   return (
     <div className="public">
-
+      <Issues/>
     </div>
   )
 }

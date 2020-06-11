@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { Switch, Route, Redirect} from 'react-router-dom'
+import { Switch, Route, Redirect, Link} from 'react-router-dom'
 import Navbar from './components/Navbar.js'
 import Auth from './components/Auth.js'
 import Profile from './components/Profile.js'
@@ -13,6 +13,12 @@ const {token,logout}=useContext(UserContext)
   return (
     <div className="app">
       {token && <Navbar logout={logout}/>}
+
+        <nav>
+          <Link to="/" className="profile1">Profile</Link>
+          <Link to="/public" className="public1" >Public</Link>
+      </nav>
+
       <Switch>
         <Route 
           exact path="/" 

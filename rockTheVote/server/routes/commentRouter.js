@@ -13,7 +13,29 @@ commentRouter.get("/", (req, res, next) => {
   })
 })
 
-// Get comments by user id
+// Get comments by user id --> will get all the comments for a specific issue by a the current user
+commentRouter.get("/user/:_id", (req, res, next) => {
+  Comment.find({ user: req.user._id, issue: req.params._id }, (err, comments) => {
+    if(err){
+      res.status(500)
+      return next(err)
+    }
+    return res.status(200).send(comments)
+  })
+})
+
+// Get all the comments from all users for a specific issue
+commentRouter.get("/:_id", (req, res, next) => {
+  Comment.find({ comments: req.params._id }, (err, comments) => {
+    if(err){
+      res.status(500)
+      return next(err)
+    }
+    return res.status(200).send(comments)
+  })
+})
+
+// Get all the comments from a specific user, for all issues
 commentRouter.get("/user", (req, res, next) => {
   Comment.find({ user: req.user._id }, (err, comments) => {
     if(err){
@@ -48,8 +70,7 @@ commentRouter.delete("/:commentId", (req, res, next) => {
         res.status(500)
         return next(err)
       }
-      return res.status(200).send(`Successfully delete Comment:`)
-      // ${deletedComment.comments}`)
+      return res.status(200).send(`Successfully deleted Comment`)
     }
   )
 })

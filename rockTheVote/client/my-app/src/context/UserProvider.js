@@ -20,8 +20,13 @@ export default function UserProvider(props) {
     errMsg:"",
   }
 
+ 
+
   const [userState, setUserState]=useState(initState)
-  console.dir(1212,userState.value)
+  console.log(12343211,userState.user._id)
+  console.log(7777,userState.user._id)
+
+
 
   function signup(credentials){
   axios.post("/auth/signup", credentials)
@@ -64,8 +69,9 @@ export default function UserProvider(props) {
   }
 
   function getUserComments(){
-    userAxios.get('api/comments/user')
+    userAxios.get(`/api/comments/user/`)
     .then(res => {
+      console.log(res.data)
       setUserState(prevState =>({
         ...prevState,
         comments:res.data
@@ -95,7 +101,6 @@ export default function UserProvider(props) {
   }
 
   function deleteComment(commentId) {
-    console.log(commentId,22222)
     userAxios
         .delete(`/api/comments/${commentId}`)
         .then((res) => {
@@ -119,7 +124,13 @@ export default function UserProvider(props) {
     });
 }
 
+// function getPostComment(){
+//   userAxios.get(`/api/comments/user/${userState.user._id}`)
+//     .then((res) => console.log(111111,res))
+//   .catch(err=> console.log(err.response.data.errMsg))
+//   }
 
+//  console.log(1212121222222222,getPostComment())
 
   return (
       <UserContext.Provider
@@ -132,6 +143,7 @@ export default function UserProvider(props) {
         deleteComment,
         getUserComments,
         logOut,
+        // getPostComment,
       }}>
       {props.children}
       </UserContext.Provider>

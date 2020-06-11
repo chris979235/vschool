@@ -1,15 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from '../context/UserProvider'
-
+import { IssueContext } from '../context/IssueProvider'
 
 
 export default function CommentsForm(props){
-  const [input, setInput] = useState({comments:''})
-
+  const [input, setInput] = useState({comment:''})
+  const {issueState}=useContext(IssueContext)
   const {addComment, logOut}=useContext(UserContext)
 
-  console.log('addcomment',addComment)
-
+  console.log(issueState,8888899999)
   function handleChange(e){
     const {name, value} = e.target
     setInput(prevInput => ({
@@ -20,8 +19,8 @@ export default function CommentsForm(props){
 
   function handleSubmit(e){
     e.preventDefault()
-    addComment(input)
-    setInput({comments:''})
+    addComment({...input, issue: issueState.issue[0]})
+    setInput({comment:''})
   }
 
 

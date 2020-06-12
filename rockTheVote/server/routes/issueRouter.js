@@ -69,7 +69,29 @@ issueRouter.get("/issue/:issueId", (req, res, next) => {
   });
 });
 
+// Get all the comments from a specific user, for all issues
+issueRouter.get("/user", (req, res, next) => {
+  Issue.find({ user: req.user._id }, (err, comments) => {
+if(err){
+  res.status(500)
+  return next(err)
+}
+return res.status(200).send(comments)
+})
+})
 
+
+
+// Get comments by user id --> will get all the comments for a specific issue by a the current user
+issueRouter.get("/user/:_id", (req, res, next) => {
+  Issue.find({ user: req.user._id, issue: req.params._id }, (err, comments) => {
+    if(err){
+      res.status(500)
+      return next(err)
+    }
+    return res.status(200).send(comments)
+  })
+})
 
 
 module.exports = issueRouter

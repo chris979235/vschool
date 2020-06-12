@@ -24,8 +24,9 @@ export default function IssueProvider(props) {
     description:'hey lets talk about',
   }
 
+  
   const [issueState, setIssues]=useState(initState)
-  const [issueId, setIssueId]=useState([])
+  console.log(issueState,5555577)
 
   function getIssues() {
     userAxios
@@ -42,15 +43,14 @@ export default function IssueProvider(props) {
       console.log(err);
     });
   }
-
   
+
 
   return (
     <IssueContext.Provider
     value={{
       issueState,
       getIssues,
-      getIssueId
     }}>
     {props.children}
     </IssueContext.Provider>

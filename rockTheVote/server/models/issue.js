@@ -18,11 +18,6 @@ const issueSchema = new Schema({
     type:Number,
     default:0
   },
-  comments: {
-    type: [Schema.Types.ObjectId],
-    ref: "Comment",
-    default: []
-  },
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

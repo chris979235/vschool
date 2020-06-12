@@ -4,23 +4,20 @@ import { IssueContext } from '../context/IssueProvider'
 
 
 export default function CommentsForm(props){
-  const [input, setInput] = useState({comment:''})
+  const [input, setInput] = useState('')
   const {issueState}=useContext(IssueContext)
   const {addComment, logOut}=useContext(UserContext)
 
-  console.log(issueState,8888899999)
+
   function handleChange(e){
     const {name, value} = e.target
-    setInput(prevInput => ({
-      ...prevInput,
-      [name]: value
-    }))
-  }
+    setInput(value)
+    }
 
   function handleSubmit(e){
     e.preventDefault()
-    addComment({...input, issue: issueState.issue[0]})
-    setInput({comment:''})
+    addComment({comments: input, issue: issueState.issue[0]._id})
+    setInput('')
   }
 
 
@@ -28,8 +25,8 @@ export default function CommentsForm(props){
     <form onSubmit={handleSubmit}>
       <input 
         type="text" 
-        name="comments" 
-        value={input.comments} 
+        name="comment" 
+        value={input} 
         onChange={handleChange} 
         placeholder="comment"/>
       <button>Add comment</button>

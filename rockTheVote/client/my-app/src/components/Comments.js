@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserProvider'
 export default function Comments(props){
 
   const {deleteComment}=useContext(UserContext)
-  const {comments, _id}=props
+  const {comments, issue, user, _id}=props
  
   return (
     <div className="todo">

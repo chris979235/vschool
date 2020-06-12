@@ -53,3 +53,8 @@ issueRouter.put("/downvote/:issueID", (req, res, next) => {
       }
     )
 }) 
+
+// public page should show  all issues 
+// No comments are loaded initially
+// if user clicks a specific issue, route the user to a page such as path="/issue/:issueID"
+    // once the new page loads, componentDidMount to fetch comments for that specific issue

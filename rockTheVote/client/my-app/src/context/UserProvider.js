@@ -68,8 +68,8 @@ export default function UserProvider(props) {
   }))
   }
 
-  function getUserComments(){
-    userAxios.get(`/api/comments/user/`)
+  function getUserComments(issueid){
+    userAxios.get(`/api/comments/issue/${issueid}`)
     .then(res => {
       console.log(res.data)
       setUserState(prevState =>({
@@ -99,15 +99,16 @@ export default function UserProvider(props) {
       errMsg:""
     }))
   }
+ 
 
-  function deleteComment(commentId) {
+  function deleteComment(commentsid) {
     userAxios
-        .delete(`/api/comments/${commentId}`)
+        .delete(`/api/comments/${commentsid}`)
         .then((res) => {
             setUserState((prev) =>
               ({
                 ...prev,
-                comments: prev.comments.filter((comments) => comments._id !== commentId)
+                comments: prev.comments.filter((comments) => comments._id !== commentsid)
                 })
             );
         })
@@ -124,13 +125,6 @@ export default function UserProvider(props) {
     });
 }
 
-// function getPostComment(){
-//   userAxios.get(`/api/comments/user/${userState.user._id}`)
-//     .then((res) => console.log(111111,res))
-//   .catch(err=> console.log(err.response.data.errMsg))
-//   }
-
-//  console.log(1212121222222222,getPostComment())
 
   return (
       <UserContext.Provider

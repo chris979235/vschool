@@ -13,9 +13,8 @@ commentRouter.get("/", (req, res, next) => {
   })
 })
 
-// Get comments by user id --> will get all the comments for a specific issue by a the current user
-commentRouter.get("/user/:_id", (req, res, next) => {
-  Comment.find({ user: req.user._id, issue: req.params._id }, (err, comments) => {
+commentRouter.get('/issue/:issueId', (req,res,next) => {
+  Comment.find({ issue: req.params.issueId }, (err, comments)=>{
     if(err){
       res.status(500)
       return next(err)
@@ -35,20 +34,13 @@ commentRouter.get("/:_id", (req, res, next) => {
   })
 })
 
-// Get all the comments from a specific user, for all issues
-commentRouter.get("/user", (req, res, next) => {
-  Comment.find({ user: req.user._id }, (err, comments) => {
-    if(err){
-      res.status(500)
-      return next(err)
-    }
-    return res.status(200).send(comments)
-  })
-})
+
+
 
 // Add new Comment
 commentRouter.post("/", (req, res, next) => {
-  req.body.user = req.user._id
+  req.body.user = req.user.username
+  console.log(22222,req.body)
   const newComment = new Comment(req.body)
   newComment.save((err, savedComment) => {
     if(err){
@@ -64,13 +56,13 @@ commentRouter.post("/", (req, res, next) => {
 // Delete Comment
 commentRouter.delete("/:commentId", (req, res, next) => {
   Comment.findOneAndDelete(
-    { _id: req.params.commentId, user: req.user._id },
+    { _id: req.params.commentId},
     (err, deletedComment) => {
       if(err){
         res.status(500)
         return next(err)
       }
-      return res.status(200).send(`Successfully deleted Comment`)
+      return res.status(200).send(deletedComment)
     }
   )
 })

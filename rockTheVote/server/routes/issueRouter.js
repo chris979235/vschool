@@ -58,7 +58,7 @@ issueRouter.post("/", (req, res, next) => {
 /////////////////////
 
 
-
+// get one issue by id
 issueRouter.get("/issue/:issueId", (req, res, next) => {
   Issue.find({ issue: req.params.issueId }, (err, posts) => {
       if (err) {

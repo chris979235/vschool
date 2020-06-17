@@ -1,12 +1,12 @@
 import React from 'react'
-import Issues from './Issues'
+import IssueList from './IssueList'
 
 export default function Public(){
 
   
   return (
     <div className="public">
-      <Issues/>
+      <IssueList/>
     </div>
   )
 }

@@ -6,7 +6,7 @@ const commentSchema = new Schema({
     type: String,
     required: true
   },
-  issue: {
+  title: {
     type: Schema.Types.ObjectId,
     ref: 'Issue',
     required: true

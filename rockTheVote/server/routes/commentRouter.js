@@ -13,13 +13,13 @@ commentRouter.get("/", (req, res, next) => {
   })
 })
 
-commentRouter.get('/issue/:issueId', (req,res,next) => {
-  Comment.find({ issue: req.params.issueId }, (err, comments)=>{
+commentRouter.get('/issues/:issueId', (req,res,next) => {
+  Comment.find({ issue: req.params.issueId}, (err, issues)=>{
     if(err){
       res.status(500)
       return next(err)
     }
-    return res.status(200).send(comments)
+    return res.status(200).send(issues)
   })
 })
 
@@ -40,7 +40,6 @@ commentRouter.get("/:_id", (req, res, next) => {
 // Add new Comment
 commentRouter.post("/", (req, res, next) => {
   req.body.user = req.user.username
-  console.log(22222,req.body)
   const newComment = new Comment(req.body)
   newComment.save((err, savedComment) => {
     if(err){

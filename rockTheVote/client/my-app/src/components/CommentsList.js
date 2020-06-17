@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext} from 'react'
 import Comments from './Comments.js'
-
+import CommentsForm from './CommentsForm'
+// import { IssueContext } from '../context/IssueProvider'
 
 export default function TodoList(props){
   const {comments, getUserComments, issueid }=props
-  
+  // const {issueState}=useContext(IssueContext)
+  // console.log(issueState.issue[0],4444444,888888)
+  // console.log(issueid,55555,888888)
   useEffect(() => {
     getUserComments(issueid)
   },[issueid])
@@ -13,12 +16,10 @@ export default function TodoList(props){
     <div className="todo-list">
       {comments.map(comment => <Comments {...comment} key={comment._id}
   />)}
+
+  {/* {issueState.issue[0].map(issues => <CommentsForm {...issues}/>)} */}
     </div>
   )
 }
 
 
-// public page shoul show  all issues 
-// No comments are loaded initially
-// if user clicks a specific issue, route the user to a page such as path="/issue/:issueID"
-    // once the new page loads, componentDidMount to fetch comments for that specific issue

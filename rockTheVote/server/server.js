@@ -1,3 +1,4 @@
+  
 const express = require('express')
 const app = express()
 require('dotenv').config()
@@ -21,7 +22,7 @@ mongoose.connect(
 
 app.use('/auth', require('./routes/authRouter.js'))
 app.use('/api', expressJwt({ secret: process.env.SECRET })) // req.user
-app.use('/api/issue', require('./routes/issueRouter.js'))
+app.use('/api/issues', require('./routes/issueRouter.js'))
 app.use('/api/comments', require('./routes/commentRouter.js'))
 app.use((err, req, res, next) => {
   console.log(err)

@@ -1,23 +1,24 @@
 import React, {useEffect, useContext} from 'react'
 import Comments from './Comments.js'
-import CommentsForm from './CommentsForm'
-// import { IssueContext } from '../context/IssueProvider'
+import {UserContext} from '../context/UserProvider'
+import {IssueContext} from '../context/IssueProvider'
 
-export default function TodoList(props){
-  const {comments, getUserComments, issueid }=props
-  // const {issueState}=useContext(IssueContext)
-  // console.log(issueState.issue[0],4444444,888888)
-  // console.log(issueid,55555,888888)
+export default function CommentsList(){
+  
+  const {getUserComments}=useContext(UserContext)
+  const {issueState}=useContext(IssueContext)
+
+  console.log(12321,issueState)
+
   useEffect(() => {
-    getUserComments(issueid)
-  },[issueid])
+    getUserComments(titleid)
+  },[titleid])
+
 
   return (
     <div className="todo-list">
-      {comments.map(comment => <Comments {...comment} key={comment._id}
-  />)}
-
-  {/* {issueState.issue[0].map(issues => <CommentsForm {...issues}/>)} */}
+      {/* {comments.map(comment => <Comments {...comment} key={comment._id} */}
+  {/* />)} */}
     </div>
   )
 }

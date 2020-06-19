@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 
 export const UserContext=React.createContext()
@@ -56,7 +56,7 @@ export default function UserProvider(props) {
         token,
       }))
     })
-    .catch(err => handleAuthError(err.errMsg))
+    .catch(err => handleAuthError(err.response.data.errMsg))
   }
 
  
@@ -68,20 +68,20 @@ export default function UserProvider(props) {
   }))
   }
 
-    function getUserComments(issueid){
-      userAxios.get(`/api/comments/issue/${issueid}`)
-      .then(res => {
-        console.log(res.data,33333333333)
-        setUserState(prevState =>({
-          ...prevState,
-          comments:res.data
-        }))
-      })
-      .catch(err=> console.log(err.response.data.errMsg))
-    }
+  function getUserComments(issueid){
+    userAxios.get(`/api/comments/issue/${issueid}`)
+    .then(res => {
+      console.log(res.data)
+      setUserState(prevState =>({
+        ...prevState,
+        comments:res.data
+      }))
+    })
+    .catch(err=> console.log(err.response.data.errMsg))
+  }
 
   function addComment(newComment){
-  userAxios.post(`/api/comments`, newComment)
+  userAxios.post('/api/comments', newComment)
   .then(res => {
     setUserState( prevState=>({
       ...prevState,
@@ -125,9 +125,6 @@ export default function UserProvider(props) {
     });
 }
 
-useEffect(()=>{
-  getUserComments()
-},[])
 
   return (
       <UserContext.Provider

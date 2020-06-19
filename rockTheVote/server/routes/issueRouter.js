@@ -13,9 +13,9 @@ issueRouter.get("/", (req, res, next) => {
   })
 })
 
-issueRouter.put("/upvote/:issueID", (req, res, next) => {
+issueRouter.put("/upvote/:ID", (req, res, next) => {
   Issue.findOneAndUpdate(
-      {_id: req.params.issueID},
+      {_id: req.params.titleID},
       {$inc: {upvote: 1}},
       {new: true},
       (err, updatedIssue) => {
@@ -30,7 +30,7 @@ issueRouter.put("/upvote/:issueID", (req, res, next) => {
 //////
 issueRouter.put("/downvote/:issueID", (req, res, next) => {
   Issue.findOneAndUpdate(
-      {_id: req.params.issueID},
+      {_id: req.params.titleID},
       {$inc: {downvote: -1}},
       {new: true},
       (err, updatedIssue) => {
@@ -60,7 +60,7 @@ issueRouter.post("/", (req, res, next) => {
 
 // get one issue by id
 issueRouter.get("/issue/:issueId", (req, res, next) => {
-  Issue.find({ issue: req.params.issueId }, (err, posts) => {
+  Issue.find({ title: req.params.titleId }, (err, posts) => {
       if (err) {
           res.status(500);
           return next(err);
@@ -84,7 +84,7 @@ return res.status(200).send(comments)
 
 // Get comments by user id --> will get all the comments for a specific issue by a the current user
 issueRouter.get("/user/:_id", (req, res, next) => {
-  Issue.find({ user: req.user._id, issue: req.params._id }, (err, comments) => {
+  Issue.find({ user: req.user._id, title: req.params._id }, (err, comments) => {
     if(err){
       res.status(500)
       return next(err)

@@ -14,12 +14,12 @@ commentRouter.get("/", (req, res, next) => {
 })
 
 commentRouter.get('/issues/:issueId', (req,res,next) => {
-  Comment.find({ issue: req.params.issueId}, (err, issues)=>{
+  Comment.find({ title: req.params.titleId}, (err, title)=>{
     if(err){
       res.status(500)
       return next(err)
     }
-    return res.status(200).send(issues)
+    return res.status(200).send(title)
   })
 })
 

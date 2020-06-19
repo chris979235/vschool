@@ -8,11 +8,9 @@ export default function CommentsForm(props){
   const {issueState}=useContext(IssueContext)
   const {addComment, logOut}=useContext(UserContext)
 
-  console.log(props._id,12345678)
   
-  console.log(issueState.issue,2323232232323)
-
-  
+console.log(props,333)
+  console.log(issueState,333444)
   
   function handleChange(e){
     const {name, value} = e.target
@@ -21,21 +19,22 @@ export default function CommentsForm(props){
 
   function handleSubmit(e){
     e.preventDefault()
-    addComment({comments: input, issue: props._id})
+    addComment({comments: input, issue: issueState.issues._id})
     setInput('')
   }
 
-  // issue: issueState.issue[0]._id
   return (
-    <form onSubmit={handleSubmit}>
-      <input 
-        type="text" 
-        name="comment" 
-        value={input} 
-        onChange={handleChange} 
-        placeholder="comment"/>
-      <button>Add comment</button>
-      <button onClick={logOut}>log out</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          name="comment" 
+          value={input} 
+          onChange={handleChange} 
+          placeholder="comment"/>
+        <button>Add comment</button>
+      </form>
+        <button onClick={logOut}>log out</button>
+    </div>
   )
 }

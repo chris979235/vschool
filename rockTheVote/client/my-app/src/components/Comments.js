@@ -1,16 +1,9 @@
-import React, {useContext} from 'react'
-import { UserContext } from '../context/UserProvider'
+import React from 'react'
 
-
-export default function Comments(props){
-
-  const {deleteComment}=useContext(UserContext)
-  const {comments, issue, user, _id}=props
- 
+export default function Comments() {
   return (
-    <div className="todo">
-      <h1>{comments}</h1>
-      <button onClick={()=>deleteComment(_id)}>delete</button>
+    <div>
+      
     </div>
   )
-} 
+}

@@ -18,9 +18,10 @@ export default function IssueProvider(props) {
     user: JSON.parse(localStorage.getItem('user')) || {},
     token: localStorage.getItem("token") || "",
     errMsg:"",
-    issues: [],
+    issue: JSON.parse(localStorage.getItem('issue')) ? [JSON.parse(localStorage.getItem('issue'))] : [],
     upvote:0,
     downvote:0,
+    description:'hey lets talk about',
   }
 
   
@@ -29,22 +30,20 @@ export default function IssueProvider(props) {
 
   function getIssues() {
     userAxios
-    .get("/api/issues")
+    .get("/api/issue")
     .then((res,) => {
       console.log(888,res);
-      const issues = res.data;
+      const randomIssue = res.data
+      localStorage.setItem('issue', JSON.stringify(randomIssue))
       setIssues({
-        issues: [...issues],
+        issue: [randomIssue],
       });
     })
     .catch((err) => {
       console.log(err);
     });
   }
-
- useEffect(()=>{
-   getIssues()
- },[])
+  
 
 
   return (

@@ -15,6 +15,7 @@ export default function CommentsList(props){
   const [input, setInput] = useState('')
   const [comments, setComments]=useState([])
   console.log(props,2323232)
+
   
 
   console.log(comments,888)
@@ -66,12 +67,12 @@ export default function CommentsList(props){
         })
         .catch((error) => console.log(error));
   }
+
   
 
 
   return (
     <div className="todo-list">
-  
 
       {comments.map(comment => <Comment {...comment} key={comment._id} deleteComment={deleteComment}/>)}
 

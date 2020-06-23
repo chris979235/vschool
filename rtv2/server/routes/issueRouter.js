@@ -25,7 +25,7 @@ issueRouter.put("/upvote/:issueID", async (req, res, next) => {
     const updated = await Issue.findOneAndUpdate(
       { _id: req.params.issueID },
       {
-        $inc: { upvote: 1 },
+        $inc: { upvote: +1 },
         $push: { votedUser: req.user._id }
       },
       { new: true }

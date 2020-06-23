@@ -14,31 +14,20 @@ userAxios.interceptors.request.use(config =>{
  export default function IssueProvider(props) {
 
 
-  const initState = {
-    user: JSON.parse(localStorage.getItem('user')) || {},
-    token: localStorage.getItem("token") || "",
-    errMsg:"",
-    issue: JSON.parse(localStorage.getItem('issue')) ? [JSON.parse(localStorage.getItem('issue'))] : [],
-    upvote:0,
-    downvote:0,
-    description:'hey lets talk about',
-  }
+  
 
   
-  const [issueState, setIssues]=useState(initState)
+  const [issues, setIssues]=useState([])
   const [votedUp, setVotedUp]=useState(0)
   const [votedDown, setVotedDown]=useState(0)
-  console.log(issueState,'issuestate')
 
   const getIssues = useCallback(() => {
     userAxios
     .get("/api/issue")
     .then((res,) => {
       console.log(888,res.data);
-      localStorage.setItem('issue', JSON.stringify(res.data))
-      setIssues({
-        issue: [res.data],
-      });
+      // localStorage.setItem('issue', JSON.stringify(res.data))
+      setIssues(res.data);
     })
     .catch((err) => {
       console.log(err);
@@ -54,8 +43,13 @@ function voteUp(issueid){
   userAxios
   .put(`/api/issue/upvote/${issueid}`)
   .then((res,) => {
-    setVotedUp(
-      res.data.upvote
+    setIssues( prev =>{  
+     const foundIssue= prev.findIndex((issue) => issue._id===issueid) 
+     const edditedObject={...prev[foundIssue], upvote: res.data.upvote}
+     const begining = prev.slice(0, foundIssue)
+     const ending = prev.slice(foundIssue +1)
+     return [...begining, edditedObject, ...ending]
+    }
     );
   })
   .catch((err) => {
@@ -67,8 +61,14 @@ function voteDown(issueid){
   userAxios
   .put(`/api/issue/downvote/${issueid}`)
   .then((res,) => {
-    setVotedDown( res.data.downvote
-    )
+    setIssues( prev =>{  
+     const foundIssue= prev.findIndex((issue) => issue._id===issueid) 
+     const edditedObject={...prev[foundIssue], downvote: res.data.downvote}
+     const begining = prev.slice(0, foundIssue)
+     const ending = prev.slice(foundIssue +1)
+     return [...begining, edditedObject, ...ending]
+    }
+    );
   })
   .catch((err) => {
     console.log(err);
@@ -79,10 +79,10 @@ function voteDown(issueid){
   return (
     <IssueContext.Provider
     value={{
-      ...issueState,
+      issues,
       voteUp,
       voteDown,
-      // getIssues,
+      getIssues,
     }}>
     {props.children}
     </IssueContext.Provider>

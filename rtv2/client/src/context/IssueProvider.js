@@ -26,7 +26,8 @@ userAxios.interceptors.request.use(config =>{
 
   
   const [issueState, setIssues]=useState(initState)
-
+  const [votedUp, setVotedUp]=useState(0)
+  const [votedDown, setVotedDown]=useState(0)
   console.log(issueState,'issuestate')
 
   const getIssues = useCallback(() => {
@@ -48,10 +49,39 @@ useEffect(()=>{
   getIssues()
 },[getIssues])
 
+
+function voteUp(issueid){
+  userAxios
+  .put(`/api/issue/upvote/${issueid}`)
+  .then((res,) => {
+    setVotedUp(
+      res.data.upvote
+    );
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
+function voteDown(issueid){
+  userAxios
+  .put(`/api/issue/downvote/${issueid}`)
+  .then((res,) => {
+    setVotedDown( res.data.downvote
+    )
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
+
   return (
     <IssueContext.Provider
     value={{
-      ...issueState
+      ...issueState,
+      voteUp,
+      voteDown,
       // getIssues,
     }}>
     {props.children}

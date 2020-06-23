@@ -1,5 +1,7 @@
-import React, {useState, useCallback, } from 'react'
+import React, {useState, useContext } from 'react'
+import {IssueContext} from '../context/IssueProvider'
 import axios from 'axios'
+
 export const userAxios=axios.create()
 
 userAxios.interceptors.request.use(config =>{
@@ -9,43 +11,18 @@ userAxios.interceptors.request.use(config =>{
 })
 
 export default function Issue(props) {
-
-
-  const [votedUp, setVotedUp]=useState(0)
-  const [votedDown, setVotedDown]=useState(0)
+const { voteUp,voteDown}=useContext(IssueContext)
+  console.log(voteDown, voteUp,'vote')
  const {description, title, upvote, downvote} = props
-
-
-  function voteUp(){
-    userAxios
-    .put(`/api/issue/upvote/${props._id}`)
-    .then((res,) => {
-      setVotedUp(
-        res.data.upvote
-      );
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+console.log(props,12345678954)
   
-  function voteDown(){
-    userAxios
-    .put(`/api/issue/downvote/${props._id}`)
-    .then((res,) => {
-      setVotedDown( res.data.downvote
-      )
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+ 
 
   return (
     <div>
   <span className='title'>  <h1>{title}</h1>  like[{upvote}]dislikes[{downvote}]
-  <button onClick={voteUp}>like</button>
-  <button onClick={voteDown}>dislike</button>
+  <button onClick={voteUp(props._id)}>like</button>
+  <button onClick={voteDown(props._id)}>dislike</button>
   </span> 
   </div> 
   )

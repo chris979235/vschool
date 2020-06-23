@@ -4,6 +4,7 @@ import Public from './Issue'
 import axios from 'axios'
 import Comment from './Comment'
 import CommentsList from './CommentsList'
+import Issue from "./Issue"
 
 export const userAxios=axios.create()
 
@@ -14,17 +15,17 @@ userAxios.interceptors.request.use(config =>{
 })
 
 export default function MappingIssues() {
-
+  
   const [issueState, setIssues]=useState([])
 
-  console.log(333,issueState)
+  console.log(333,issueState._id)
 
 
   const getIssues = useCallback(() => {
     userAxios
     .get("/api/issue")
     .then((res,) => {
-      console.log(888,res.data);
+      console.log(88877,res.data);
       setIssues( res.data,
       );
     })
@@ -36,6 +37,11 @@ export default function MappingIssues() {
 useEffect(()=>{
   getIssues()
 },[getIssues])
+
+
+
+
+
 
   return (
     <div>

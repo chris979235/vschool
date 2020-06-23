@@ -51,7 +51,7 @@ useEffect(()=>{
   return (
     <IssueContext.Provider
     value={{
-      issueState
+      ...issueState
       // getIssues,
     }}>
     {props.children}

@@ -23,7 +23,7 @@ userAxios.interceptors.request.use(config =>{
  
 
   const [userState, setUserState]=useState(initState)
-
+  console.log(userState,'userstate')
 
   function signup(credentials){
   axios.post("/auth/signup", credentials)

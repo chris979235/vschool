@@ -14,7 +14,7 @@ userAxios.interceptors.request.use(config =>{
 export default function CommentsList(props){
   const [input, setInput] = useState('')
   const [comments, setComments]=useState([])
-  console.log(2222233,comments.text)
+  console.log(props,2323232)
   
 
   console.log(comments,888)
@@ -54,14 +54,14 @@ export default function CommentsList(props){
   }
 
   function deleteComment(commentsid) {
+    console.log('imrunning')
     userAxios
         .delete(`/api/comments/${commentsid}`)
         .then((res) => {
-            setComments((prev) =>
-              ({
-                ...prev,
-                comments: prev.comments.filter((comments) => comments._id !== commentsid)
-                })
+            setComments(
+            prev => {
+            return  prev.filter((comments) => comments._id !== commentsid)
+           }
             );
         })
         .catch((error) => console.log(error));
@@ -77,13 +77,14 @@ export default function CommentsList(props){
 
 
       <div className='inputs'>
+       <span> <h1>{props.title}: {props.description}</h1> </span>
         <form onSubmit={handleSubmit}>
           <input 
             type="text" 
             name="comment" 
             value={input} 
             onChange={handleChange} 
-            placeholder="comment"/>
+            placeholder={props.title}/>
           <button>Add comment</button>
         </form>
       </div>

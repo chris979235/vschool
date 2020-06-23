@@ -1,7 +1,8 @@
 import React, {useState} from "react"
 import UglyMap from "./UglyMap"
 import uuid from 'react-uuid'
-function App() {
+
+export default function App() {
     const [inputData, setInputData] = useState({description: "", title: "", imgURL:"", _id: ""})
     const [uglyData, setUglyData] = useState([])
     
@@ -31,14 +32,12 @@ function App() {
      const index= prevUglyData.indexOf(ugly => ugly._id === edits._id)
      const starting=prevUglyData.slice(0,index)
      const ending=prevUglyData.slice(index+2, prevUglyData.length)
-     console.log(starting,ending,123)
      return [...starting,edits,...ending]
     })
     }
 
     
   const contacts = uglyData.map( (newUgly, _id) => <UglyMap key={_id} buttonEdit={edit}  buttonDelete={deleted} _id={newUgly._id} description={newUgly.description} title={newUgly.title} imgURL={newUgly.imgURL}/>)
-    console.log(11111,contacts)
     
     return (
       <div className="box">
@@ -71,7 +70,6 @@ function App() {
     )
 }
 
-export default App
 
 ///onblur(), <labels>
 

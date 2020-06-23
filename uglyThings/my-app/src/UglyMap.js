@@ -4,7 +4,6 @@ import React, {useState} from 'react'
 export default function UglyMap(props) {
   const [inputData, setInputData] = useState({description: "", title: "", imgURL:"", _id: props._id})
   const [toggle, setToggle]=useState(true)
-  console.log(3333,props)
 
   function handleToggle(){
     setToggle( prevToggle => !prevToggle )

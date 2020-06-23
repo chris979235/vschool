@@ -40,8 +40,6 @@ useEffect(()=>{
   return (
     <div>
        {issueState.map(issue => <Public {...issue} key={issue._id} />)}
-       {issueState.map(issue => <Profile {...issue} key={issue._id} />)}
-       {issueState.map(issue => <Comment {...issue} key={issue._id} />)}
        {issueState.map(issue => <CommentsList {...issue} key={issue._id} />)}
     </div>
   )

@@ -18,6 +18,11 @@ const issueSchema = new Schema({
     type:Number,
     default:0
   },
+  votedUser:{
+    type: [Schema.Types.ObjectId],
+    ref: "User",
+    default:[]
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

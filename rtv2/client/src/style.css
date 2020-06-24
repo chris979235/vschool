@@ -109,20 +109,10 @@
   position: absolute
 }
 
-.text{
-margin-left:25%;
-position: relative;
-border-bottom:50px
+.issue{
+  border: 1px solid black;
+  display: flex;
 }
-.description{
-  margin-left: 15%;
-  position: relative;
+.map{
+  border: 1px solid black
 }
-.title{
-  margin-left: 5%;
-  position: relative;
-}
-.inputs{
-  margin-left: 25%;
-  position: relative;
-} 

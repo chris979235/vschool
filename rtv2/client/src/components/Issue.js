@@ -14,11 +14,11 @@ console.log(props,12345678954)
  
 
   return (
-    <div>
-  <span className='title'>  <h1>{title}</h1>  like[{upvote}]dislikes[{downvote}]
-  <button onClick={()=>voteUp(props._id)}>like</button>
-  <button onClick={()=>voteDown(props._id)}>dislike</button>
+  <span className='issue'>
+    <span className='title'>  <h1>{title}</h1>  like[{upvote}]dislikes[{downvote}]
+      <button onClick={()=>voteUp(props._id)}>like</button>
+      <button onClick={()=>voteDown(props._id)}>dislike</button>
+    </span> 
   </span> 
-  </div> 
   )
 }

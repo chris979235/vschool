@@ -1,16 +1,17 @@
 import React, {useEffect, useContext} from 'react'
 import {UserContext} from '../context/UserProvider'
-export default function Profile(props){
+
+
+
+export default function Profile(){
 
   
   const {getUserComments}=useContext(UserContext)
   
-  console.log(2134567,props)
 
-
-  useEffect(() => {
-    getUserComments(props._id)
-  },[props._id])
+  // useEffect(() => {
+  //   getUserComments()
+  // },[])
 
   
   return (

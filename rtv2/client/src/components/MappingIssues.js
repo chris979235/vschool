@@ -18,7 +18,7 @@ useEffect(()=>{
 
 
   return (
-    <div>
+    <div className='map'>
        {issues.sort((a,b) => b.upvote-a.upvote ).map(issue => <Issue {...issue} key={issue._id} />)}
        {issues.map(issue => <CommentsList {...issue} key={issue._id} />)}
     </div>

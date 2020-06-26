@@ -25,8 +25,6 @@ userAxios.interceptors.request.use(config =>{
     userAxios
     .get("/api/issue")
     .then((res,) => {
-      console.log(888,res.data);
-      // localStorage.setItem('issue', JSON.stringify(res.data))
       setIssues(res.data);
     })
     .catch((err) => {

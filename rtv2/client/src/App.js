@@ -5,19 +5,21 @@ import Auth from './components/Auth.js'
 import Profile from './components/Profile.js'
 import Public from './components/MappingIssues.js'
 import ProtectedRoute from "./components/ProtectedRoute"
+import MappingYourComments from './components/MappingYourComments'
 import {UserContext} from "./context/UserProvider.js"
 
 export default function App(){
-
-const {token, logout}=useContext(UserContext)
+const {token, logOut}=useContext(UserContext)
 
   return (
     <div className="app">
-      {token && <Navbar logout={logout}/>}
+      {token && <Navbar logOut={logOut}/>}
 
         <nav>
-          <Link to="/" className="profile1">Profile</Link>
-          <Link to="/public" className="public1" >Public</Link>
+          <Link to="/" className="profile1">Create an issue</Link>
+          <Link to="/public" className="public1" >comment on issues</Link>
+          <Link to="/MappingYourComments" className='yourpost'>your posts</Link>
+         <button onClick={ () => logOut()} className='button1'>logout</button>
       </nav>
 
       <Switch>
@@ -37,6 +39,13 @@ const {token, logout}=useContext(UserContext)
           redirectTo="/"
           token={token}
         />
+        <Route
+        path="/MappingYourComments"
+        component={MappingYourComments}
+        redirectTo="/"
+        token={token}
+        />
+
       </Switch>
     </div>
   )

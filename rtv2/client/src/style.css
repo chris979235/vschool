@@ -8,8 +8,20 @@
   text-decoration: none;
 }
 
+body{
+  padding:5vh;
+}
+
+#root{
+  margin:0 auto;
+  width: 95vw;
+  max-width: 900px;
+}
+
 .app {
   background-color: #eee9;
+  flex-wrap:wrap;
+  flex:200px;
 }
 
 .navbar {
@@ -100,19 +112,21 @@
   border-radius: 5px
 }
 
-.profile{
-  margin-left: 45%;
+.profile1{
+  margin-left: 5%;
   position: absolute;
 }
 .public1{
   margin-left: 25%;
   position: absolute
 }
+.button1{
+  margin-left: 55%;
+  position: absolute;
+}
+.yourpost{
+  margin-left: 45%;
+  position: absolute;
+}
 
-.issue{
-  border: 1px solid black;
-  display: flex;
-}
-.map{
-  border: 1px solid black
-}
+

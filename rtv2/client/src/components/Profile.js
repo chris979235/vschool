@@ -1,22 +1,13 @@
-import React, {useEffect, useContext} from 'react'
-import {UserContext} from '../context/UserProvider'
+import React from 'react'
+import MakeIssue from './MakeIssue'
 
 
+export default function Profile(props) {
 
-export default function Profile(){
-
-  
-  const {getUserComments}=useContext(UserContext)
-  
-
-  // useEffect(() => {
-  //   getUserComments()
-  // },[])
-
-  
   return (
-    <div className="todo-list">
-     a
+    <div>
+      <br></br>
+      <MakeIssue/>
     </div>
   )
 }

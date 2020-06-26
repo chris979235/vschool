@@ -1,17 +1,21 @@
-import React, {useEffect} from 'react'
-
+import React from 'react'
+import styled from 'styled-components'
 
 export default function Comment(props) {
   const {deleteComment}=props
-console.log(props,2222233)
-console.log(props,123)
-
+  console.log(props,55555)
 
 
   return (
-    <div> 
+    <Div> 
        <span className='text'>{props.text}</span>
-        <button onClick={ () => deleteComment(props._id,)}>delete</button>
-    </div>
+        <button onClick={ () => deleteComment(props._id, props.user)}>delete</button>
+    </Div>
   )
 }
+
+const Div=styled.div`
+display:flex;
+flex-wrap:wrap;
+justify-content: left;
+`

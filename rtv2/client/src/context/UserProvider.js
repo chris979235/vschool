@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 export const UserContext = React.createContext();
@@ -76,6 +76,8 @@ userAxios.interceptors.request.use(config =>{
     })
     .catch(err=> console.log(err.response.data.errMsg))
   }
+  
+  
 
   function addComment(newComment){
   userAxios.post('/api/comments', newComment)
@@ -133,7 +135,6 @@ userAxios.interceptors.request.use(config =>{
         deleteComment,
         getUserComments,
         logOut,
-        // getPostComment,
       }}>
       {props.children}
       </UserContext.Provider>

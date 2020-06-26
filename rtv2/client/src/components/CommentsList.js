@@ -1,7 +1,9 @@
-import React, {useEffect,useState, useContext} from 'react'
-import { UserContext } from '../context/UserProvider'
+import React, {useEffect, useState} from 'react'
 import Comment from './Comment'
 import axios from 'axios'
+import Profile from './Profile'
+import styled from 'styled-components'
+import YourPosts from './YourPosts'
 
 export const userAxios=axios.create()
 
@@ -14,15 +16,12 @@ userAxios.interceptors.request.use(config =>{
 export default function CommentsList(props){
   const [input, setInput] = useState('')
   const [comments, setComments]=useState([])
-  console.log(props,2323232)
 
-  
-
+  console.log(22222,props)
   console.log(comments,888)
   function getUserComments(titleid){
-    userAxios.get(`/api/comments/${titleid}`)
+    userAxios.get(`/api/comments/issue/${titleid}`)
     .then(res => {
-      console.log(res.data,5544)
       setComments( res.data
       )
     })
@@ -32,7 +31,6 @@ export default function CommentsList(props){
   function addComment(newComment){
     userAxios.post('/api/comments', newComment)
     .then(res => {
-      console.log(res,55555)
       setComments(prev=> [...prev ,res.data])
     })
     .catch(err=> console.log(err))
@@ -61,7 +59,7 @@ export default function CommentsList(props){
         .then((res) => {
             setComments(
             prev => {
-            return  prev.filter((comments) => comments._id !== commentsid)
+            return  prev.filter((comments) => comments._id !== commentsid ) 
            }
             );
         })
@@ -72,13 +70,9 @@ export default function CommentsList(props){
 
 
   return (
-    <div className="todo-list">
-
-      {comments.map(comment => <Comment {...comment} key={comment._id} deleteComment={deleteComment}/>)}
-
-
-      <div className='inputs'>
-       <span> <h1>{props.title}: {props.description}</h1> </span>
+    <Div>
+     <Spancontainer>
+      <span className='inputs'>
         <form onSubmit={handleSubmit}>
           <input 
             type="text" 
@@ -86,9 +80,31 @@ export default function CommentsList(props){
             value={input} 
             onChange={handleChange} 
             placeholder={props.title}/>
-          <button>Add comment</button>
+            <span> <h1>{props.title}: {props.description}</h1> </span>
+          <Button>Add comment</Button>
         </form>
-      </div>
-    </div>
+      </span>
+    {comments.map(comment => <Comment {...comment} key={comment._id} deleteComment={deleteComment}/>)}
+      </Spancontainer>
+   </Div>
   )
 }
+
+const Button = styled.button`
+color:blue;
+background-color:red;
+margin:5px;
+`
+const Spancontainer = styled.span`
+display:flex;
+text-align: center;
+flex-direction: column;
+align-items:center;
+flex-wrap:wrap;
+flex:200px;
+`
+const Div=styled.div`
+margin:5vh;
+flex-wrap:wrap;
+flex:200px;
+`

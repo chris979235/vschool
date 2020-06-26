@@ -59,10 +59,6 @@ issueRouter.put("/downvote/:issueID", async (req, res, next) => {
   }
 })
 
-
-
-  
-  
   // Add new Issue
   issueRouter.post("/", (req, res, next) => {
     req.body.user = req.user._id

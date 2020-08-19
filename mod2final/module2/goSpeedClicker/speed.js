@@ -1,22 +1,21 @@
-let button=document.getElementById("clickme")
+
+
+
+
+let bodyClick = document.getElementById("clickme")
 let par=document.getElementById("paragraph")
+let count = 0;
 
-
-let count
-
-
-
-if (localStorage.getItem("count")){
-  count=localStorage.getItem("count")
+if (localStorage.getItem("numberOfClicks")){
+  count=localStorage.getItem("numberOfClicks")
 }  
 else {count=0}
 
-par.textContent=count
 function event(){
-  count++
-  par.textContent=count
-  localStorage.setItem("count", count)
+  count ++
+  par.textContent = count
+  localStorage.setItem("numberOfClicks", count)
 }
+localStorage.setItem("numberOfClicks", count)
 
-button.addEventListener("click", event)
-
+bodyClick.addEventListener("click", event)

@@ -1,10 +1,57 @@
-.container{
-  border:1px solid black;
+.star{
+  border: 1px solid black;
   text-align: center;
-  width: 30%;
-  height:100px;
+  width:60vh;
   margin-left: 35%;
+  margin-top: 100px;
 }
+
+.bounty{
+  width:60vh;
+  text-align: center;
+  background-color: red;
+}
+
+.container{
+  margin-left:31%;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2,150px);
+}
+.wanted{
+  grid-row: 1/2;
+  grid-column: 1/4;
+  text-align: center;
+}
+.deadoralive{
+  grid-row: 1/2;
+  grid-column: 1/4;
+  text-align: center;
+  margin-top: 50px;
+}
+
 .container2{
-  margin-top: 7%;
+  grid-row:2/4;
+  display:grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3,40px);
 }
+.button{
+  grid-column: 2/3;
+  background-color: crimson;
+}
+
+.filter{
+  position: absolute;
+margin-left: 48%;
+margin-top:260px
+}
+.button2{
+  margin-left:50%;
+}
+
+
+
+
+
+

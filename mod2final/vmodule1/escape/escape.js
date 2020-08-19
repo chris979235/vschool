@@ -7,6 +7,7 @@ var operations=["put hand in hole", "find the key", "open the door"];
 var die = hole("you die");
 var found = key("found key");
 var opened = open("opened door");
+
 while (openDoor === false) {
   var chooseOpp = readlineSync.keyInSelect(operations, "choose operation");
   checkResult(chooseOpp);

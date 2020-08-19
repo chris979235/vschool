@@ -12,15 +12,6 @@ bounties.get("/", (req, res, next) =>{
   })
 })
 
-// bounties.get('/:bountyId', (req, res, next)=>{
-//   const bountyId=req.params.bountyId
-//   if(!foundId){
-//     const error= new Error(`the item with id ${bountyId} not found`)
-//     res.status(500)
-//     return next(error)
-//   }
-//   res.status(200).send(foundId)
-// })
 
 bounties.get('/search/type', (req, res, next)=>{
   Bounty.find({type:req.query.type}, (err, bounties)=>{

@@ -11,7 +11,7 @@ form.addEventListener("submit", (event) => {
       arr.push(form.diet[i].value)
     }
   }
-  console.log(arr)
+  alert(form.firstName.value+""+form.lastName.value+''+form.age.value+''+ form.city.value )
 })
 
 

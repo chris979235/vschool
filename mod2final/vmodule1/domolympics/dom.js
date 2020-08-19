@@ -1,7 +1,7 @@
 var header=document.createElement("h1")
 header.textContent="Javascript made this!!"
 document.body.append(header)
-header.classList="header"//this allows css use
+header.classList="header"
 header.id="howdy"
 header.style.backgroundColor="blue"
 
@@ -44,8 +44,3 @@ write.classList="write"
 write.id="news"
 write.style.backgroundColor="green"
 
-// document.getElementById("news")
-// news.addEventListener("mouseover", change)
-// function change(){
-//   document.getElementById("howdy").textContent="hello and goodbye"
-// }

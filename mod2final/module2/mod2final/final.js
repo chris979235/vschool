@@ -1,4 +1,3 @@
-//page loads reads js skips over thenablebes to read all code goes back to
 function deleted(deleteButton, data, div, ) {
   deleteButton.addEventListener("click", function () {
     axios.delete("https://api.vschool.io/chrisrees/todo/" + data._id)
@@ -77,18 +76,13 @@ function newItem(item) {
       .then(response => {
         if (response.data.completed) {
           h1.style.textDecoration = "line-through"
-          // h11.style.textDecoration="line-through"
-          // h111.style.textDecoration="line-through"
-          // h1111.style.textDecoration="line-through"
+         
         } else
           h1.style.textDecoration = "none"
-        // h11.style.textDecoration="none"
-        // h111.style.textDecoration="none"
-        // h1111.style.textDecoration="none"
         console.log(response)
       })
       .catch(error => console.log(error))
   })
   console.log(response.data[i].completed)
-  // }
+  }
   getdone()

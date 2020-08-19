@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from "axios"
+
 export default function BountyForm(props) {
   const initialInputs={firstName: props.firstName || "",  lastName: props.lastName||'',
   living:props.living||'',  bounty:props.bounty||'',  type:props.type||'',}
@@ -16,22 +17,24 @@ export default function BountyForm(props) {
      console.log(inputs)
      setInputs(initialInputs)
   }
+  
 
  
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="container">
-        <div className="container2">
-        <input name='firstName' value={inputs.firstName} onChange={handleChange} placeholder="First Name" />
-        <input name='lastName' value={inputs.lastName} onChange={handleChange} placeholder="Last Name" />
-        <input name='living' value={inputs.living} onChange={handleChange} placeholder="Dead or Alive" />
-        <input name='bounty' value={inputs.bounty} onChange={handleChange} placeholder="Bounty" />
-        <input name='type' value={inputs.type} onChange={handleChange} placeholder="sith or jedi"/>
-        <button>{props.btnText}</button>
-        </div>
+    <div className="container">
+      <h1 className='wanted'>WANTED</h1>
+      <h1 className='deadoralive'>DEAD OR ALIVE</h1>
+      <form onSubmit={handleSubmit} className="container2">
+        <input className="firstName" name='firstName' value={inputs.firstName} onChange={handleChange} placeholder="First Name" />
+        <input className="lastName" name='lastName' value={inputs.lastName} onChange={handleChange} placeholder="Last Name" />
+        <input className="status" name='living' value={inputs.living} onChange={handleChange} placeholder="Dead or Alive" />
+        <input className="bountys" name='bounty' value={inputs.bounty} onChange={handleChange} placeholder="Bounty" />
+        <input className="type" name='type' value={inputs.type} onChange={handleChange} placeholder="sith or jedi"/>
+        <button className='button'>{props.btnText}</button>
       </form>
-
+      
     </div>
+
   )
 }

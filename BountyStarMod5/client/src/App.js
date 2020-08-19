@@ -52,6 +52,15 @@ export default function BountyAxios() {
 
   return (
     <div>
+      <div className='filter'>
+       <h4>filter by sith or jedi</h4>
+        <select onChange={handleFilter} >
+          <option value="reset">sith and jedi</option>
+          <option value="sith">sith</option>
+          <option value="jedi">jedi</option>
+        </select>
+      </div>
+      
       <BountyForm
       submit={addBounty}
       btnText={'add Bounty'}
@@ -60,12 +69,7 @@ export default function BountyAxios() {
       deleteBounty={deleteBounty}
       editBounty={editBounty}
       />)}
-      <h4>filter by sith or jedi</h4>
-      <select onChange={handleFilter} >
-        <option value="reset">sith and jedi</option>
-        <option value="sith">sith</option>
-        <option value="jedi">jedi</option>
-      </select>
+
     </div>
   )
 }

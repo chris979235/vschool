@@ -5,7 +5,7 @@ const Schema=mongoose.Schema
 const bountySchema = new Schema({
   firstName: {
     type:String,
-    required: truec
+    required: true
   },
   lastName: {
     type:String,
